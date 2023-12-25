@@ -1,28 +1,39 @@
-import Post from './Post';
-import NewPost from './NewPost';
-import classes from './PostList.module.css';
 import { useState } from 'react';
 
-function PostList() {
-  const [enteredBody, setEnteredBody] = useState('');
-  const [enteredAuthor, setEnteredAuthor] = useState('')
+import Post from './Post';
+import NewPost from './NewPost';
+import Modal from './Modal';
+import classes from './PostList.module.css';
 
-  function changeBodyHandler(event) {
-    setEnteredBody(event.target.value)
-  }
+function PostsList({ isPosting, onStopPosting }) {
+  const [posts, setPosts] = useState([]);
 
-  function changeAuthorHandler(event) {
-    setEnteredAuthor(event.target.value)
+  function addPostHandler(postData) {
+    setPosts((existingPosts) => [postData, ...existingPosts]);
   }
 
   return (
     <>
-      <NewPost onBodyChange={changeBodyHandler} onAuthorChange={changeAuthorHandler} />
-      <ul className={classes.posts}>
-        <Post author={enteredAuthor} body={enteredBody} />
-      </ul>
+      {isPosting && (
+        <Modal onClose={onStopPosting}>
+          <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
+        </Modal>
+      )}
+      {posts.length > 0 && (
+        <ul className={classes.posts}>
+          {posts.map((post) => (
+            <Post key={post.body} author={post.author} body={post.body} />
+          ))}
+        </ul>
+      )}
+      {posts.length === 0 && (
+        <div style={{ textAlign: 'center', color: 'white' }}>
+          <h2>There are no posts yet.</h2>
+          <p>Start adding some!</p>
+        </div>
+      )}
     </>
-  )
+  );
 }
 
-export default PostList;
+export default PostsList;
