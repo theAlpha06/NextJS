@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import Post from './components/Post'
 
 function App() {
 
   return (
-    <>
-      <div>React</div>
-    </>
+    <main>
+      <Post author="Shubhbam" body="Singh"/>
+    </main>
   )
 }
 
