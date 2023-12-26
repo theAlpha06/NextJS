@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import Post from './Post';
-import NewPost from './NewPost';
-import Modal from './Modal';
 import classes from './PostList.module.css';
 
-function PostsList({ isPosting, onStopPosting }) {
+function PostsList() {
   const [posts, setPosts] = useState([]);
 
   //This will cause an infinite loop
@@ -27,24 +25,19 @@ function PostsList({ isPosting, onStopPosting }) {
   }, [])
 
 
-  function addPostHandler(postData) {
-    fetch('http://localhost:8080/posts', {
-      method: 'POST',
-      body: JSON.stringify(postData),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    setPosts((existingPosts) => [postData, ...existingPosts]);
-  }
+  // function addPostHandler(postData) {
+  //   fetch('http://localhost:8080/posts', {
+  //     method: 'POST',
+  //     body: JSON.stringify(postData),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   });
+  //   setPosts((existingPosts) => [postData, ...existingPosts]);
+  // }
 
   return (
     <>
-      {isPosting && (
-        <Modal onClose={onStopPosting}>
-          <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
-        </Modal>
-      )}
       {posts && posts.length > 0 && (
         <ul className={classes.posts}>
           {posts.map((post) => (
