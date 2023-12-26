@@ -1,28 +1,11 @@
-import { useEffect, useState } from 'react';
-
+import { useLoaderData } from 'react-router-dom';
 import Post from './Post';
 import classes from './PostList.module.css';
 
 function PostsList() {
-  const [posts, setPosts] = useState([]);
+  const posts = useLoaderData();
 
-  //This will cause an infinite loop
 
-  // fetch('http://localhost:8080/posts')
-  // .then(response => response.json())
-  // .then(data => {
-  //   setPosts(data.posts);
-  // });
-
-  useEffect(() => {
-    async function fetchPosts() {
-      const response = await fetch('http://localhost:8080/posts')
-      const resData =  await response.json();
-      setPosts(resData.posts);
-    }
-
-    fetchPosts();
-  }, [])
 
 
   // function addPostHandler(postData) {
