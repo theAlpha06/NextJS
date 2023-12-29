@@ -3,5 +3,9 @@
     "paths": {
       "@/*": ["./*"]
     }
-  }
+  },
+  "include": [
+    "**/*",
+    "/home/thealpha06/Dev/NEXTJS/foodies/components/image-slideshow.js"
+  ]
 }
