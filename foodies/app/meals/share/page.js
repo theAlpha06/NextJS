@@ -59,4 +59,4 @@ export default function ShareMealPage() {
       </main>
     </>
   );
-}
+};
