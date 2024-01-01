@@ -1,6 +1,10 @@
+
 function SelectedClientProjectPage() {
+
   return (
-    <div>SelectedClientProjectPage</div>
+    <>
+      <div>SelectedClientProjectPage</div>
+    </>
   )
 }
 
