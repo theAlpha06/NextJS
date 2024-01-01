@@ -5,6 +5,7 @@ import EventSummary from "../../components/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
 
+
 function EventDetailPage() {
   const router = useRouter();
 
