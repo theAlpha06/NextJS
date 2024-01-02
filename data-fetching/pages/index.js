@@ -38,6 +38,7 @@ export async function getStaticProps() {
     props: {
       products: data.products,
     },
+    revalidate: 10, // regenerate every 10 seconds until a new request comes in less than 10 seconds
   }
 }
 
