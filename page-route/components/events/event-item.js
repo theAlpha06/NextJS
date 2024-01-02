@@ -7,7 +7,6 @@ import ArrowRightIcon from '../icons/arrow-right-icon'
 
 function EventItem(props) {
   const {title, image, date, location, id} = props;
-  console.log(props)
 
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
