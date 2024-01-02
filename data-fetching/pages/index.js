@@ -3,6 +3,22 @@ import path from 'path';
 
 function HomePage(props) {
   const {products} = props;
+
+  //? React way of fetching data from backend
+  // const [product, setProduct] = useState([]);
+
+  // useEffect(() => {
+  //   fetch('/dummy-backend.json')
+  //   .then((response) => {
+  //     return response.json();
+  //   })
+  //   .then((data) => {
+  //     setProduct(data.products);
+  //   });
+  // }
+  // , []);
+
+
   return (
     <ul>
      {products.map((product) => (
