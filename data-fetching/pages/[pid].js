@@ -15,6 +15,10 @@ function ProductDetailPage(props) {
 
   const { loadedProduct } = props;
 
+  // if(!loadedProduct) {
+  //   return <p>Loading...</p>
+  // }
+
   return <Fragment>
     <h1>Product Detail Page</h1>
     <p>{loadedProduct.title}</p>
@@ -49,7 +53,10 @@ export async function getStaticPaths() {
       { params: { pid: 'p2' } },
       // { params: { pid: 'p3' } },
     ],
-    fallback: true // if true, then it will pregenerate the page for the paths that are defined in the paths array and for the rest of the paths, it will generate the page on the fly
+    fallback: 'blocking' // if true, then it will pregenerate the page for the paths that are defined in the paths array and for the rest of the paths, it will generate the page on the fly
+    // if 'blocking', then it will pregenerate the page for the paths that are defined in the paths array and for the rest of the paths, it will wait until the page is generated and then it will show the page
+    // if false, then it will pregenerate the page for the paths that are defined in the paths array and for the rest of the paths, it will show 404 page
+    // it is same as the code on the line 18
   }
 }
 
