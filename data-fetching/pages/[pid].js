@@ -1,3 +1,12 @@
+/*
+  !Order of execution of the functions in Next.js
+
+  1. getStaticPaths()
+  2. getStaticProps()
+  3. getServerSideProps()
+
+*/
+
 import { Fragment } from "react";
 import path from 'path';
 import fs from 'fs/promises';
