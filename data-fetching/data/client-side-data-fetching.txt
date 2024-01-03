@@ -1,0 +1,7 @@
+Some data doesn't need to be prerendered
+  - Data changing with high frequency (eg. stock data)
+  - Highly user-specific data (eg. last orders in an online shop)
+  - Partial data (eg. data that's onlu used on a part of an page)
+
+Pre-fetching the data for page generation might not work or be required
+"Traditional" client-side data fetching (eg. useEffect() with fetch() is fine)
