@@ -68,3 +68,22 @@ export async function getStaticProps() {
 }
 
 export default HomePage;
+
+
+/*
+  Server Side Rendering(SSR) vs Static Site Generation(SSG)
+
+  Server Side Rendering(SSR):
+  - It is used when the data changes frequently
+  - It is used when the data is private or user specific
+  - It is used when the data is not available at build time
+
+  Static Site Generation(SSG):
+  - It is used when the data changes less frequently
+  - It is used when the data is public
+
+  !Note: If the data is public and changes frequently, then we can use SSG with revalidate option
+
+  ?Sometimes, you need to pre-reder for every reuqest OR you nedd access to the request object in getStaticProps() function. In that case, you can use getServerSideProps() function. It will pre-render for every request and it will give you access to the request object. So basically, it's "run server-side code at request time" and that code is added in getServerSideProps() function. The function is executed whenever a request for the page is made. 
+  !You should only use getStaticProps() or getServerSideProps() inside the same component
+*/
