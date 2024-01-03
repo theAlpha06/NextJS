@@ -47,9 +47,9 @@ export async function getStaticPaths() {
     paths: [
       { params: { pid: 'p1' } },
       { params: { pid: 'p2' } },
-      { params: { pid: 'p3' } },
+      // { params: { pid: 'p3' } },
     ],
-    fallback: false // if true, then it will pregenerate the page for the paths that are defined in the paths array and for the rest of the paths, it will generate the page on the fly
+    fallback: true // if true, then it will pregenerate the page for the paths that are defined in the paths array and for the rest of the paths, it will generate the page on the fly
   }
 }
 
