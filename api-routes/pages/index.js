@@ -43,6 +43,8 @@ function HomePage() {
         <button type="submit">Submit</button>
         <p id="msg"></p>
       </form>
+      <hr />
+      <a href="/api/feedback">Feedback</a>
     </div>
   );
 }
