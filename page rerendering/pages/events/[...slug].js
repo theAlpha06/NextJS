@@ -28,8 +28,6 @@ function FilteredEventsPage() {
     return <p className='center'>Loading...</p>
   }
 
-  console.log(filterData)
-
   const filteredYear = filterData[0];
   const filteredMonth = filterData[1];
 
