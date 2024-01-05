@@ -9,9 +9,9 @@ function EventDetailPage({selectedEvent}) {
 
   if (!selectedEvent) {
     return (
-      <ErrorAlert>
-        <p>No event found!</p>
-      </ErrorAlert>
+      <div className='center'>
+        <p>Loading...</p>
+      </div>
     );
   }
 
