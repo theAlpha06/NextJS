@@ -5,7 +5,6 @@ class MyDocument extends Document {
     return <Html lang="en">
       <Head>
         <meta name='description' content='NextJS Events' />
-        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
       <body>
         <Main /> {/*this is where the page content is rendered */}
