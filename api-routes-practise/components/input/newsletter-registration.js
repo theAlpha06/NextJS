@@ -18,7 +18,7 @@ function NewsletterRegistration() {
 
     const res = await fetch('/api/newsletter/register', {
       method: 'POST',
-      body: JSON.stringify(email),
+      body: JSON.stringify({email}),
       headers: {
         'Content-Type': 'application/json'
       }

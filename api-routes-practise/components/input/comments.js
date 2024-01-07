@@ -1,22 +1,27 @@
-import { useEffect, useState } from 'react';
-
+import { useEffect, useState, useContext } from 'react';
+import NotificationContext from '../../store/notification-context';
 import CommentList from './comment-list';
 import NewComment from './new-comment';
 import classes from './comments.module.css';
 
 function Comments(props) {
   const { eventId } = props;
-
+  const { showNotification } = useContext(NotificationContext);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    if(showComments) {
-      fetch('/api/comment/123')
-      .then(res => res.json())
-      .then(data => {
-        setComments(data.comments)
-      });
+    if (showComments) {
+      setIsLoading(true);
+      fetch(`/api/comment/${eventId}`)
+        .then(res => res.json())
+        .then(data => {
+          setComments(data.comments)
+        })
+        .finally(() => {
+          setIsLoading(false);
+        })
     }
 
     return () => {
@@ -29,15 +34,33 @@ function Comments(props) {
   }
 
   async function addCommentHandler(commentData) {
-    const res = await fetch(`/api/comment/${eventId}`, {
-      method: 'POST',
-      body: JSON.stringify(commentData),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const resData = await res.json();
-    console.log(resData);
+    try {
+      showNotification({
+        title: 'Saving...',
+        message: "Saving your comment...",
+        status: 'pending'
+      })
+      const res = await fetch(`/api/comment/${eventId}`, {
+        method: 'POST',
+        body: JSON.stringify(commentData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const resData = await res.json();
+      showNotification({
+        title: 'Success',
+        message: resData.message || "Successfully added your comment!",
+        status: 'success'
+      })
+      setComments(prevData => [...prevData, resData.comment]);
+    } catch (error) {
+      showNotification({
+        title: 'Error',
+        message: error.message || "Error while saving!",
+        status: 'error'
+      })
+    }
   }
 
   return (
@@ -46,7 +69,8 @@ function Comments(props) {
         {showComments ? 'Hide' : 'Show'} Comments
       </button>
       {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList comments={comments}/>}
+      {isLoading && <p>Loading...</p>}
+      {showComments && !isLoading && <CommentList comments={comments} />}
     </section>
   );
 }

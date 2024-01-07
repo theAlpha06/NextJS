@@ -27,7 +27,7 @@ function NewComment(props) {
       setIsInvalid(true);
       return;
     }
-
+    
     props.onAddComment({
       email: enteredEmail,
       name: enteredName,
