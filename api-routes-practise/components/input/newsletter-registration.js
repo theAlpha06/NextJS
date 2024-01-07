@@ -17,9 +17,6 @@ function NewsletterRegistration() {
     })
     const resData  = await res.json();
     console.log(resData);
-    // fetch user input (state or refs)
-    // optional: validate input
-    // send valid data to API
   }
 
   return (
