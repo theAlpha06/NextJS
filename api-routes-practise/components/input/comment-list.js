@@ -1,15 +1,7 @@
 import { useState } from 'react';
 import classes from './comment-list.module.css';
 
-function CommentList() {
-
-  const [comments, setComments] = useState([]);
-
-  fetch('/api/comment/123')
-    .then(res => res.json())
-    .then(data => {
-      setComments(data.comments)
-    });
+function CommentList({comments}) {
 
 
   return (
