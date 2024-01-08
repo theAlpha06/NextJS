@@ -1,43 +1,25 @@
 import { Fragment } from "react"
 import Hero from "../components/home-page/hero"
 import FeaturedPosts from "../components/home-page/featured-post"
+import { getFeaturedPosts } from "../lib/posts-utils"
 
-const dummy = [
-  {
-    title: 'NextJS',
-    slug: 'getting-started-with-nextjs',
-    image: 'nextjs.png',
-    excerpt: 'NextJS is the React framework for production - it makes building fullstack...',
-    date: '2022-02-10'
-  },
-  {
-    title: 'NextJS',
-    slug: 'getting-started-with-nextjs2',
-    image: 'nextjs.png',
-    excerpt: 'NextJS is the React framework for production - it makes building fullstack...',
-    date: '2022-02-10'
-  },
-  {
-    title: 'NextJS',
-    slug: 'getting-started-with-nextjs3',
-    image: 'nextjs.png',
-    excerpt: 'NextJS is the React framework for production - it makes building fullstack...',
-    date: '2022-02-10'
-  },
-  {
-    title: 'NextJS',
-    slug: 'getting-started-with-nextjs4',
-    image: 'nextjs.png',
-    excerpt: 'NextJS is the React framework for production - it makes building fullstack...',
-    date: '2022-02-10'
-  },
-]
 
-function HomePage() {
+
+function HomePage(props) {
     return <Fragment>
         <Hero />
-        <FeaturedPosts posts={dummy}/>
+        <FeaturedPosts posts={props.posts}/>
     </Fragment>
+}
+
+export function getStaticProps() {
+  const featuredPosts = getFeaturedPosts();
+
+  return {
+    props: {
+      posts: featuredPosts
+    },
+  }
 }
 
 export default HomePage
