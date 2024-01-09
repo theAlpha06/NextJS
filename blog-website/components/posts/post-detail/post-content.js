@@ -2,11 +2,13 @@ import Image from 'next/image';
 import classes from './post-content.module.css'
 import PostHeader from './post-header';
 import ReactMarkdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 
 function PostContent(props) {
 
-  const {post} = props;
+  const { post } = props;
 
   const customRenderers = {
     p(paragraph) {
@@ -28,15 +30,26 @@ function PostContent(props) {
       }
       return <p>{paragraph.children}</p>;
     },
-  };
+    code(code) {
+      const { className, children } = code;
+      const language = className.split('-')[1];
+      return (
+        <SyntaxHighlighter
+          style={atomDark}
+          language={language}
+          children={children}
+        />
+      );
+    },
+};
 
-  const imagePath = `/images/posts/${post.image}`;
-  return <article className={classes.content}>
-    <PostHeader title={post.title} image={imagePath} />
-    <ReactMarkdown components={customRenderers}>
-      {post.content}
-    </ReactMarkdown>
-  </article>
+const imagePath = `/images/posts/${post.image}`;
+return <article className={classes.content}>
+  <PostHeader title={post.title} image={imagePath} />
+  <ReactMarkdown components={customRenderers}>
+    {post.content}
+  </ReactMarkdown>
+</article>
 }
 
 export default PostContent;

@@ -30,4 +30,5 @@ In this article, we'll dive into the core concepts and features NextJS has to of
 
 ![Create routes via your file + folder structure](routing.png)
 
+
 ... More content ...

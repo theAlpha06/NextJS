@@ -19,7 +19,6 @@ export function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-
   const post = getPostData(slug);
 
   return {
